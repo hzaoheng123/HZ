@@ -20,6 +20,22 @@
 span.displaynone { display: none; }
 </style>
 
+<script>
+    $(document).ready(function () {
+        $('.text_container').addClass("hidden");
+        $('.text_container').click(function () {
+            var $this = $(this);
+
+            if ($this.hasClass("hidden")) {
+                $(this).removeClass("hidden").addClass("visible");
+
+            } else {
+                $(this).removeClass("visible").addClass("hidden");
+            }
+        });
+    });
+</script>
+    
 </head>
 
 <body>
@@ -262,7 +278,7 @@ Notre Dame, IN 46556, USA
                         <ul>
                             <li>I like yoga, cycling, cooking, reading, travelling.</li>
                             <li><em>Understanding others is intelligent, understanding yourself is wisdom.</em></li>
-                            <li>Last update on 10 March 2021.</li><br>
+                            <li>Last update on 1 Jul 2021.</li><br>
                         </ul>
                     </div>
                 </div>
