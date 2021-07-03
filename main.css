@@ -58,7 +58,10 @@ div.name { }
   margin: 0px 2px;
 }
 
-.Highlight {color: #ff3333;}
+Highlight {
+  text-decoration: none;
+  color: #ff3333;
+}
 
 .superhead .arrow-left {
 	width: 0; 
