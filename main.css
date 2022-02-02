@@ -37,8 +37,6 @@ div.name { }
 .contact dt { margin-top: 20px; color: #2980b9; }
 .contact dd { margin-left: 0;}
 
-.sdd { margin-left: 0; font-size: 12px;}
-
 .button {
   -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
   padding: 3px 10px;
