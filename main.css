@@ -26,8 +26,6 @@ li.former { list-style-type: circle; }
 
 a { text-decoration: none; color: #2980b9; }
 
-p {font-size: 12px;}
-
 div.sidebar { width: 200px; float: left; vertical-align: top; margin-left: 50px; }
 div.main { vertical-align: top; margin-left: 300px; margin-right: 50px; }
 div.bigmain { margin-left: 50px; margin-right: 50px; }
@@ -38,6 +36,8 @@ div.name { }
 
 .contact dt { margin-top: 20px; color: #2980b9; }
 .contact dd { margin-left: 0;}
+
+.sdd { margin-left: 0; font-size: 12px;}
 
 .button {
   -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
