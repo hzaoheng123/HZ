@@ -38,8 +38,8 @@ div.name { }
 .contact dd { margin-left: 0;}
 
 div.news { font-size: 16px; }
-.news dtt { margin-top: 20px; color: #2980b9; }
-.news dit { margin-left: 0;}
+.news dt { margin-top: 20px; color: #2980b9; }
+.news dd { margin-left: 0;}
 
 
 .button {
