@@ -37,9 +37,9 @@ div.name { }
 .contact dt { margin-top: 20px; color: #2980b9; }
 .contact dd { margin-left: 0;}
 
-div.news { font-size: 20px; }
-.news dt { margin-top: 20px; color: #2980b9; }
-.news dd { margin-left: 0;}
+div.news { }
+.news dt { font-size: 22px; margin-top: 15px; color: #2980b9; }
+.news dd { font-size: 16px; margin-left: 3px;}
 
 
 .button {
