@@ -103,6 +103,19 @@ pre { overflow-x: scroll; }
 
 
 
+div#container {
+    padding-left: 20px;
+    padding-right: 20px;
+    /*margin-left: 15%;
+    margin-right: 15%; */
+    width: 1000px; 
+    margin: 0 auto;
+    text-align: left;
+    /* position: relative; */
+    background-color: #FFF;
+}
+
+
 table.pub_table tr {
     outline: thin dotted #666666;
 }
