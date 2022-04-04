@@ -125,13 +125,20 @@ table.pub_table tr {
     text-decoration: none;
 }
 
+.plain-paper-title {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+
 .papericon {
     /* border-radius: 8px; */
     /* -moz-box-shadow: 3px 3px 6px #888;
     -webkit-box-shadow: 3px 3px 6px #888;
     box-shadow: 3px 3px 6px #888; */
     /* height: auto; */
-    width: 160px;
+    width: 140px;
+    height: 60;
     margin-top: auto;
     margin-left: 5px;
     margin-bottom: auto;
