@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMPS 320: Introduction to Artificial Intelligence and Machine Learning</title>
+    <link rel="stylesheet" href="CSE%2040657_60657_%20Natural%20Language%20Processing_files/foundation.min.css">
+    <link rel="stylesheet" href="CSE%2040657_60657_%20Natural%20Language%20Processing_files/app.css">
+    <link rel="stylesheet" href="CSE%2040657_60657_%20Natural%20Language%20Processing_files/nlp.css">
+  <script type="text/x-mathjax-config;executed=true">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$']]}
+});
+</script><script src="CSE%2040657_60657_%20Natural%20Language%20Processing_files/MathJax.js" id="">
+</script><meta class="foundation-mq"><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+
+
+
+
+  <body data-whatinput="mouse" data-new-gr-c-s-check-loaded="8.912.0" data-gr-ext-installed=""><div id="MathJax_Message" style="display: none;"></div>
+
+
+<div class="row">
+<div class="large-12 columns">
+<h1><small>CSE 40657/60657</small> <br> Natural Language Processing</h1>
+</div>
+</div>
+
+<div class="row">
+<div class="medium-4 columns">
+<dl class="info">
+<dt>Term</dt> <dd>Fall 2023</dd>
+<dt>Time</dt> <dd>MWF 11:30–12:20</dd>
+<dt>Room</dt> <dd>313 DeBartolo</dd>
+<dt>Instructor</dt> <dd><a href="https://www.nd.edu/~dchiang">David Chiang</a></dd>
+</dl>
+</div>
+
+<div class="medium-8 columns">
+<p>Computers process massive amounts of information every day in the
+form of human language. Although they do not understand it, they can
+learn how to do things like answer questions about it, or translate it
+into other languages. This course is a systematic introduction to the
+ideas that form the foundation of current language technologies and
+research into future language technologies.</p>
+
+<p>The official prerequisite is CSE 20312. Students should be
+experienced with writing substantial programs in Python. The course
+also makes use of finite automata, context-free grammars, basic linear
+algebra, multivariable differential calculus, and probability
+theory. Ideally, students should have taken CSE 30151, Math 10560, and
+ACMS 30440, but please contact the instructor if you have questions
+about the necessary background.</p> </div> </div>
+
+<a name="staff"></a>
+
+<div class="row">
+<div class="large-12 columns">
+<h2>Staff</h2>
+<p>The best way to contact the teaching staff is on <a href="https://campuswire.com/c/G07087401">Campuswire</a>.
+</p></div>
+</div>
+
+<div class="row">
+<div class="medium-4 columns">
+<img class="pic" src="CSE%2040657_60657_%20Natural%20Language%20Processing_files/chiang.png">
+<div class="caption">Instructor<br><a href="https://www3.nd.edu/~dchiang">Prof. David Chiang</a><br>Office hours: Tues 1:30–3:30pm, WTh 1:30–2:30pm<br>179 Fitzpatrick</div>
+</div>
+<div class="medium-4 columns">
+<img class="pic" src="CSE%2040657_60657_%20Natural%20Language%20Processing_files/srivastava.png">
+<div class="caption">Teaching assistant<br>Aarohi Srivastava<br>Office hours: Wed 5–7pm<br>150B Fitzpatrick</div>
+</div>
+<div class="medium-4 columns">
+</div>
+</div>
+
+<div class="row">
+<div class="large-12 columns">
+<h2>Schedule</h2>
+
+<p>Unless otherwise indicated, assignments are due at 5pm Eastern time.</p>
+
+<table class="schedule">
+
+<thead>
+<tr>
+    <td>Week</td>
+    <td>Topic</td>
+    <td>Readings/Assignments</td>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+    <td> 08/23 </td>
+    <td> Introduction </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/notes/chapter1.pdf">Chapter 1</a> <br> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/slides/introduction.pdf">Slides</a> <br> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/project.html#idea">Project idea</a> (due 09/01) </td>
+</tr>
+
+<tr>
+    <td> 08/28 </td>
+    <td> Language models (n-grams) </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/notes/chapter2.pdf">Chapter 2</a> </td>
+</tr>
+
+<tr>
+    <td> 09/04 </td>
+    <td> Language models (RNNs) </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/hw1.html">HW1: Text prediction</a> (due 09/15) </td>
+</tr>
+
+<tr>
+    <td> 09/11 </td>
+    <td> Machine translation (IBM models) </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/notes/chapter3.pdf">Chapter 3</a> </td>
+</tr>
+
+<tr>
+    <td> 09/18 </td>
+    <td> Machine translation (attention and transformers) </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/hw2.html">HW2: Machine translation</a> (due <span class="corrected">10/06</span>) </td>
+</tr>
+
+<tr>
+    <td> 09/25 </td>
+    <td> Language models (transformers) </td>
+    <td> </td>
+</tr>
+
+<tr>
+    <td> 10/02 </td>
+    <td> Speech and writing </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/notes/chapter4.pdf">Chapter 4</a> <br> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/project.html#baseline">Project baseline</a> (due 10/13) </td>
+</tr>
+
+<tr>
+    <td> 10/09 </td>
+    <td> Words: parts-of-speech and morphology</td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/notes/chapter5.pdf">Chapter 5</a> </td>
+</tr>
+
+<tr>
+        <td colspan="3" align="center"> Fall Break </td>
+</tr>
+
+<tr>
+    <td> 10/23 </td>
+    <td> Syntax and parsing</td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/hw3.html">HW3: Parsing</a> (due 11/08)<br>
+    <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/notes/chapter6.pdf">Chapter 6</a> </td>
+</tr>
+
+<tr>
+    <td> 10/30 </td>
+    <td> Parsing, continued</td>
+    <td> </td>
+</tr>
+
+<tr>
+    <td> 11/06 </td>
+    <td> Semantics </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/notes/chapter7.pdf">Chapter 7</a> <br>
+    <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/hw4.html">HW4: Named entity recognition</a> (due 11/<span class="corrected">20</span>) </td>
+</tr>
+
+<tr>
+    <td> 11/13 </td>
+    <td> Generation </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/notes/chapter8.pdf">Chapter 8</a> </td>
+</tr>
+
+<tr>
+    <td> 11/20 </td>
+    <td> M: Projects </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/hw5.html">HW5: Generation</a> (due 12/01) </td>
+</tr>
+
+<tr>
+    <td> 11/27 </td>
+    <td> MW: Generation, continued <br> F: Projects </td>
+    <td> </td>
+</tr>
+
+<tr>
+    <td> 12/04 </td>
+    <td> Conclusion </td>
+    <td> <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/project.html#report">Project report</a> (due 12/15) </td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+</div>
+
+<a name="links"></a>
+<div class="row">
+<div class="large-12 columns">
+<h2>Links</h2>
+<ul>
+  <li><a href="https://canvas.nd.edu/courses/77752">Canvas</a> (for submitting project milestones and for receiving grades and solution sets)</li>
+  <li><a href="https://classroom.github.com/classrooms/31135631-cse-40657-60657-natural-language-processing">GitHub</a> (for submitting code)</li>
+  <li><a href="https://campuswire.com/c/G07087401">Campuswire</a> (for asking questions and discussion)</li>
+</ul>
+</div>
+</div>
+
+<a name="grading"></a>
+<div class="row">
+<div class="large-12 columns">
+<h2>Requirements</h2>
+</div>
+</div>
+
+<div class="row">
+<div class="medium-6 columns">
+<p> Your work in this course consists of five homework assignments and a <a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/project.html">research project</a>.</p>
+<table class="grade">
+<thead><tr><td>requirement</td> <td>points</td></tr></thead>
+<tbody>
+<tr><td><a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/homework.html">homeworks</a></td> <td>5 × 30</td></tr>
+<tr><td><a href="https://www3.nd.edu/~dchiang/teaching/nlp/2023/project.html">project</a></td> <td>3 × 30 + 60</td></tr>
+</tbody>
+<tfoot>
+<tr><td>total</td> <td>300</td></tr>
+</tfoot>
+</table>
+</div>
+<div class="medium-6 columns">
+<table class="grade">
+<thead><tr><td>letter grade</td><td>points</td></tr></thead>
+<tbody>
+<tr><td>A</td>        <td>280–300</td> </tr>
+<tr><td>A−</td> <td>270–279</td> </tr>
+<tr><td>B+</td>       <td>260–269</td> </tr>
+<tr><td>B</td>        <td>250–259</td> </tr>
+<tr><td>B−</td> <td>240–249</td> </tr>
+<tr><td>C+</td>       <td>230–239</td> </tr>
+<tr><td>C</td>        <td>220–229</td> </tr>
+<tr><td>C−</td> <td>210–219</td> </tr>
+<tr><td>D</td>        <td>180–209</td> </tr>
+<tr><td>F</td>        <td>0–179</td>   </tr>
+</tbody>
+</table><p></p>
+</div>
+<div class="medium-4 columns"></div>
+</div>
+
+<a name="policies"></a>
+<div class="row">
+<div class="large-12 columns">
+<h2>Policies</h2>
+</div>
+</div>
+
+<div class="row">
+<div class="medium-6 columns">
+<h3>Honor Code</h3>
+
+<div>
+<p>Students in this course are expected to abide by the Academic Code of
+ Honor Pledge: “As a member of the Notre Dame community, I will not 
+participate in or tolerate academic dishonesty.”</p>
+
+<p>The following table summarizes how you may work with other students and use print/online sources:
+</p><table class="honorcode">
+<tbody><tr>
+<td></td>
+<th>Resources</th>
+<th>Solutions</th>
+</tr>
+
+<tr>
+<th>Consulting</th>
+<td id="consult-resource-cell" bgcolor="#93c47d">allowed</td>
+<td id="consult-solution-cell" bgcolor="#e06666">not allowed</td>
+</tr>
+
+<tr>
+<th>Copying</th>
+<td id="copy-resource-cell" bgcolor="ffd966">cite</td>
+<td id="copy-solution-cell" bgcolor="#e06666">not allowed</td>
+</tr>
+</tbody></table>
+See the <a href="https://cse.nd.edu/undergraduate/cse-guide-to-the-honor-code/">CSE Guide to the Honor Code</a> for definitions of the above terms.<p></p>
+
+<p>If an instructor sees behavior that is, in his judgement, 
+academically dishonest, he is required to file either an Honor Code 
+Violation Report or a formal report to the College of Engineering 
+Honesty Committee.</p>
+
+<h3>Students with Disabilities</h3>
+<p>Any student who has a documented disability and is registered with 
+Disability Services should speak with the professor as soon as possible 
+regarding accommodations. Students who are not registered should contact
+ the <a href="http://disabilityservices.nd.edu/">Office of Disability Services</a>.</p>
+
+</div>
+</div>
+
+<div class="medium-6 columns">
+
+<h3>Late Submissions</h3>
+<p>For university-excused absences (e.g., documented illness, travel for
+ athletics or a job interview), coursework submissions will be accepted 
+late by the same number of days as the excused absence. Otherwise, you 
+may submit part of an assignment on time for full credit and part of the
+ assignment late for a penalty. No part of the assigment may be 
+submitted more than once. The late penalty increases by 5% per day and 
+stops increasing when it reaches 50%; thereafter, it remains at 50% 
+until the final project due date, after which no work may be submitted.</p>
+
+<h3>Copyright</h3>
+<p>All course materials written by the instructor and published on this website are licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+<p>All other course materials, including lecture recordings and 
+materials written by the instructor and distributed privately (including
+ through Sakai) should not be redistributed in any way; doing so is a 
+violation of both US copyright law and the University of Notre Dame 
+Honor Code.</p>
+<p></p>
+
+</div>
+
+</div>
+
+
+<div class="footer">
+© 2015–2021 David Chiang. Unless otherwise indicated, all materials are licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.<p></p>
+</div>
+
+<script src="CSE%2040657_60657_%20Natural%20Language%20Processing_files/jquery.min.js"></script>
+<script src="CSE%2040657_60657_%20Natural%20Language%20Processing_files/what-input.min.js"></script>
+<script src="CSE%2040657_60657_%20Natural%20Language%20Processing_files/foundation.min.js"></script>
+<script src="CSE%2040657_60657_%20Natural%20Language%20Processing_files/app.js"></script>
+
+
+
+
+<script>mendeleyWebImporter = {
+  downloadPdfs(e,t) { return this._call('downloadPdfs', [e,t]); },
+  open() { return this._call('open', []); },
+  setLoginToken(e) { return this._call('setLoginToken', [e]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.3724237247288714', methodName, methodArgs }, 'https://www3.nd.edu');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
